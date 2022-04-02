@@ -1,0 +1,1 @@
+curl -k -H 'User-Agent: api-test-agent' 'https://api.hh.ru/vacancies?text=datascientist' | > hh.json

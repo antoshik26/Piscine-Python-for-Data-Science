@@ -1,0 +1,1 @@
+sort -t "," -k2 -nk1 ../ex01/hh.csv > hh_sorted.csv

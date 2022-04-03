@@ -10,6 +10,9 @@ if __name__ == "__main__":
 	for i in str_company:
 		new_str_company.append(i.replace(' ', ''))
 	for i in new_str_company:
+		if (len(i) == 0):
+			exit(1)
+	for i in new_str_company:
 		if (i.upper() in STOCKS):
 			for j in COMPANIES.items():
 				if (i.upper() == j[1]):

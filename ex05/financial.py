@@ -13,6 +13,7 @@ def get_row(ticker, row):
 		'From': f'http://finance.yahoo.com/quote/{ticker}/financials'
 	}
 	page = urlopen(Request(url=url, headers=headers)).read()
+	time.sleep(5)
 	page_parsed = BeautifulSoup(page, 'html.parser')
 	title = page_parsed.title.string
 	if title == 'Symbol Lookup from Yahoo Finance':

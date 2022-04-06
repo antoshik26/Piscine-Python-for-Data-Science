@@ -13,8 +13,9 @@ def get_row(ticker, row):
 		'From': f'https://finance.yahoo.com/quote/msft/financials?p={ticker}'
 	}
 	page = urlopen(Request(url=url, headers=headers)).read()
-	time.sleep(5)
+	# time.sleep(5)
 	page_parsed = BeautifulSoup(page, 'html.parser')
+	print(type(page_parsed))
 	title = page_parsed.title.string
 	if title == 'Symbol Lookup from Yahoo Finance':
 		raise ValueError('ticker does not exist')

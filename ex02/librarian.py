@@ -34,6 +34,7 @@ if __name__ == '__main__':
 		print (termgraph.__version__)
 		print (wcwidth.__version__)
 		print (zipp.__version__)
+		file_name = 'requirements.txt'
 		str_ret =  pip.main(['freeze'])
-		with open(self.file_name, 'w') as f:
+		with open(file_name, 'w') as f:
 			f.write(str_ret)

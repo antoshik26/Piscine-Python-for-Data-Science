@@ -29,12 +29,18 @@ if __name__ == '__main__':
 		import termgraph
 		import wcwidth
 		import zipp
-		print (six.__version__)
-		print (soupsieve.__version__)
-		print (termgraph.__version__)
-		print (wcwidth.__version__)
-		print (zipp.__version__)
+		from pip._internal.operations import freeze
+		# print (six.__version__)
+		# print (soupsieve.__version__)
+		# print (termgraph.__version__)
+		# print (wcwidth.__version__)
+		# print (zipp.__version__)
 		file_name = 'requirements.txt'
-		str_ret =  pip.main(['freeze'])
+		str_ret =  freeze.freeze()
+		# for i in str_ret:
+		# 	print(i)
+		# print(str_ret)
 		with open(file_name, 'w') as f:
-			f.write(str_ret)
+			for i in str_ret:
+				f.write(i)
+				f.write('\n')

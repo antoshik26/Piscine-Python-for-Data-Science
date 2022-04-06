@@ -7,10 +7,9 @@ import ssl
 
 def get_row(ticker, row):
 	ssl._create_default_https_context = ssl._create_unverified_context
-	url = f'http://finance.yahoo.com/quote/{ticker}/financials'
-	print(url)
+	url = f'https://finance.yahoo.com/quote/msft/financials?p={ticker}'
 	headers = {'User-Agent': 'My User Agent 1.0',
-		'From': f'http://finance.yahoo.com/quote/{ticker}/financials'
+		'From': f'https://finance.yahoo.com/quote/msft/financials?p={ticker}'
 	}
 	page = urlopen(Request(url=url, headers=headers)).read()
 	time.sleep(5)
@@ -19,12 +18,16 @@ def get_row(ticker, row):
 	if title == 'Symbol Lookup from Yahoo Finance':
 		raise ValueError('ticker does not exist')
 	tags = page_parsed.find_all(attrs={'data-test': 'fin-row'})
-	rows = [tag.find(class_='Va(m)').get_text() for tag in tags]
-	print(rows)
+	rows = []
+	for i in tags:
+		rows.append(i.find(class_='Va(m)').get_text())
 	if row not in rows:
 		raise ValueError('row does not exist')
 	elems = tags[rows.index(row)].find_all('span')
-	return tuple(elem.get_text() for elem in elems)
+	return_tuple = []
+	for i in elems:
+		return_tuple.append(i.get_text())
+	return return_tuple
 
 
 if __name__ == '__main__':

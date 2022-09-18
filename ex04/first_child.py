@@ -5,10 +5,10 @@ import random
 class Must_read():
 	def __init__(self, file_name):
 		self.file_name = file_name
-		line = self.file_reader()
-		c = self.Calculations(line)
-		self.count = c.counts()
-		self.fraction = c.fractions()
+		self.line = self.file_reader()
+		self.c = self.Calculations(self.line)
+		self.count = self.c.counts()
+		self.fraction = self.c.fractions()
 
 	def file_reader(self, has_header = True):
 		permission = self.file_name.split('.')
@@ -25,6 +25,7 @@ class Must_read():
 		for i in line[1:]:
 			if (i != '1,0' and i != '0,1'):
 				raise ValueError('asdf')
+		#print(line[1:])
 		return(line[1:])
 
 	class Calculations:
@@ -59,8 +60,8 @@ class Analytics(Must_read.Calculations):
 		dictionary = {0: [0, 1], 1: [1, 0]}
 		return [dictionary[random.randint(0, 1)] for i in range(count)]
 
-	def predict_random(self):
-		return (new_line[len(new_line)])
+	def predict_last(self):
+		return (self.new_line[len(self.new_line) - 1])
 	
 	def file_print(self, file_name, text):
 		with open(file_name, 'w') as f:
@@ -71,5 +72,10 @@ if __name__ == '__main__':
 		print("error")
 		exit(1)
 	e = Must_read(sys.argv[1])
+	print(e.file_reader())
 	print(e.count)
 	print(e.fraction)
+	a = Analytics(e.line)
+	list_predict = a.predict_random(3)
+	print(list_predict)
+	print(a.predict_last())

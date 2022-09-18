@@ -63,8 +63,8 @@ class Analytics(Must_read.Calculations):
 		dictionary = {0: [0, 1], 1: [1, 0]}
 		return [dictionary[random.randint(0, 1)] for i in range(count)]
 
-	#def predict_random(self):
-	#	return (line[len(line)])
+	def predict_random(self):
+		return (new_line[len(new_line)])
 	
 	def file_print(self, file_name, text):
 		with open(file_name, 'w') as f:

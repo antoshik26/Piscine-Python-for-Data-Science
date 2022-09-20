@@ -1,6 +1,6 @@
 import re
 import pytest
-from financial import 
+from financial import *
 
 @pytest.fixture
 def total_revenue():
